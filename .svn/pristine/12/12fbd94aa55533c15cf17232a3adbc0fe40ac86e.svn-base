@@ -1,0 +1,66 @@
+<template>
+	<view class="nums">
+		<view class="pic">
+			<image src="../../static/num_bg.png"></image>
+			<view class="num-info">2</view>
+		</view>
+		
+		<view class="num-desc">当前出场顺序为2号</view>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				
+			}
+		},
+		onLoad() {
+
+		},
+		methods: {
+           
+		}
+	}
+</script>
+
+<style>
+page{
+	font-size: 14px;
+}
+
+.nums{
+	
+}
+
+.pic{
+	position: relative;
+}
+
+.pic image{
+	width:400upx;
+	height:385upx;
+	display: flex;
+	margin:70px auto 15px;
+}
+
+.num-info{
+	width: 40px;
+	text-align: center;
+	height: 20px;
+	line-height: 20px;
+	position:absolute;
+	left: 50%;
+	top: 50%;
+	margin-left:-28px;
+	margin-top:-13px;
+	font-size: 18px;
+	color: #fff;
+}
+.num-desc{
+	text-align: center;
+	margin-top: 45px;
+	font-size: 18px;
+}
+</style>

@@ -1,0 +1,64 @@
+<template>
+	<view class="info">
+		<view class="info-add">
+			<input type="text" placeholder="姓名"/>
+		</view>
+		<view class="info-add">
+			<input type="text" placeholder="电话"/>
+		</view>
+		<view class="save" @click="takeNum">保存</view>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				
+			}
+		},
+		onLoad() {
+
+		},
+		methods: {
+           takeNum(){
+			   uni.navigateTo({
+			   	url:'../num/num'
+			   })
+		   }
+		}
+	}
+</script>
+
+<style>
+page{
+	font-size: 14px;
+}
+.info-add{
+	background:#f6e7e7;
+	width: 80%;
+	border-radius:8px;
+	margin: 15px auto 25px;
+	height: 50px;
+}
+
+.info-add input{
+	height: 50px;
+	padding-left: 15%;
+}
+
+.uni-input-placeholder{
+	color:#a20606
+}
+
+.save{
+	background:#a20606;
+	width: 80%;
+	border-radius:8px;
+	margin: 80px auto 25px;
+	height: 50px;
+	line-height: 50px;
+	color: #fff;
+	text-align: center;
+}
+</style>

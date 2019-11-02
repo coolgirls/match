@@ -1,0 +1,123 @@
+<template>
+	<view class="info">
+		<view class="info-add">
+			<input type="text" placeholder="姓名" v-model="userName"/>
+		</view>
+		<view class="info-add">
+			<input type="text" placeholder="电话" v-model="phone"/>
+		</view>
+		<view class="save" @click="takeNum">保存</view>
+	</view>
+</template>
+
+<script>
+	import site from '../../config.js'
+	export default {
+		data() {
+			return {
+				userName:'',
+				phone:'',
+				name:''
+			}
+		},
+		onLoad(options) {
+           this.name=options.name
+		},
+		methods: {
+           takeNum(){
+			   var phonetel = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/;
+			   var phone=this.phone;
+			   var person=this.userName;
+			   if(phone==''&&person==''){
+				   uni.showToast({
+				     title: '手机号或姓名不能为空!',
+				     icon: 'none',
+				     duration: 1500
+				   })
+				   return false;
+			   }else if (phone.length != 11) {
+			         uni.showToast({
+			           title: '手机号长度有误！',
+			           icon: 'none',
+			           duration: 1500
+			         })
+			         return false;
+			   }else if(!phonetel.test(phone)){
+				   uni.showToast({
+					   title: '手机号有误！',
+					   icon: 'none',
+					   duration: 1500
+					 })
+					 return false;
+			   }else{
+				   uni.request({
+						url:site.url+'addSign',
+						data:{
+							'name':this.name,
+							'person':person,
+							'phone':phone,
+							'openId':'3'
+						},
+						header: {
+							'Content-Type': 'application/json'
+						},
+						method: 'POST',
+						success:(res)=>{
+							var msg=res.data.msg;
+							if(msg=='报名人数已满'){
+								uni.showToast({
+									title:'报名人数已满',
+									duration: 2000,
+									success:(res)=>{
+									 setTimeout(function() {
+										uni.navigateBack({
+											delta:1
+										})
+									  }, 2000);
+									}
+								})
+							}else{
+								uni.navigateTo({
+									url:'../num/num?msg='+msg
+								})
+							}
+						}
+				   })
+			   }
+		   }
+		}
+	}
+</script>
+
+<style>
+page{
+	font-size: 14px;
+}
+.info-add{
+	background:#f6e7e7;
+	width: 80%;
+	border-radius:8px;
+	margin: 15px auto 25px;
+	height: 50px;
+}
+
+.info-add input{
+	height: 50px;
+	padding-left: 15%;
+}
+
+.uni-input-placeholder{
+	color:#a20606
+}
+
+.save{
+	background:#a20606;
+	width: 80%;
+	border-radius:8px;
+	margin: 80px auto 25px;
+	height: 50px;
+	line-height: 50px;
+	color: #fff;
+	text-align: center;
+}
+</style>

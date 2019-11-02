@@ -1,0 +1,89 @@
+<template>
+	<view class="match">
+		<view class="match-item">
+			<view class="item-left">
+				<image src="../../static/list.png"></image>
+			</view>
+			<view class="item-right">
+				<view class="item-title">舞蹈比赛报名</view>
+				<view class="item-bot">
+					<view class="bot-left">
+						<image src="../../static/icon.png"></image>
+						<text class="nums">共25人</text>
+					</view>
+					<view class="bot-right" @click="addInfo">报名</view>
+				</view>
+			</view>
+		</view>
+	</view>
+</template>
+
+<script>
+	export default {
+		data() {
+			return {
+				
+			}
+		},
+		onLoad() {
+
+		},
+		methods: {
+           addInfo(){
+			   uni.navigateTo({
+			   	url:'../info/info'
+			   })
+		   }
+		}
+	}
+</script>
+
+<style>
+page{
+	font-size: 14px;
+}
+.match-item{
+	display: flex;
+	padding: 15px 8px;
+	border-bottom: 1px solid #f0eff5;
+}
+.item-left{
+	margin-right: 13px;
+}
+.item-left image{
+	width:80px;
+	height: 80px;
+	display: flex;
+}
+.item-right{
+	display: flex;;
+	flex-direction: column;
+	height: 80px;
+	justify-content: space-between;
+	align-content:space-between;
+	width: 631px;
+}
+.item-bot{
+	display: flex;
+	justify-content: space-between;
+}
+.bot-left{
+	display: flex;
+	align-items: center;
+	color: #9b999a;
+}
+.bot-left image{
+	width: 22px;
+	height: 22px;
+	margin-right: 4px;
+}
+.bot-right{
+	width: 80px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	background: #a20606;
+	color: #fff;
+	border-radius: 10px;
+}
+</style>
